@@ -1,113 +1,56 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:riverpod_poc/models/item_model.dart';
+import 'package:riverpod_poc/screens/home_screen_async_notifier.dart';
+import 'package:riverpod_poc/screens/home_screen_future.dart';
+import 'package:riverpod_poc/screens/home_screen_notifier.dart';
 
-class HomeScreen extends ConsumerWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    TextEditingController nameController = TextEditingController();
-    TextEditingController descriptionController = TextEditingController();
-    List<Item> items = ref.watch(itemsProvider);
+  State<HomeScreen> createState() => _HomeScreenState();
+}
 
+class _HomeScreenState extends State<HomeScreen> {
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Riverpod POC"),
+        title: Text("Riverpod POC"),
       ),
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Center(
-            child: Column(
-              children: [
-                Expanded(
-                  child: ListView.builder(
-                    itemCount: items.length,
-                    itemBuilder: (context, index) => Row(
-                      children: [
-                        Expanded(
-                          child: Row(
-                            children: [
-                              const Text(
-                                "Name: ",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 15),
-                              ),
-                              Text(items[index].name),
-                            ],
-                          ),
-                        ),
-                        Expanded(
-                          child: Row(
-                            children: [
-                              const Text(
-                                "Description: ",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 15),
-                              ),
-                              Text(
-                                items[index].description,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
+      body: Center(
+        child: Column(
+          children: [
+            ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => HomeScreenFuture(),
                   ),
-                ),
-                Row(
-                  children: [
-                    Expanded(
-                      child: TextFormField(
-                        controller: nameController,
-                        decoration: const InputDecoration(
-                          contentPadding: EdgeInsets.all(10),
-                          border: OutlineInputBorder(),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(width: 5),
-                    Expanded(
-                      child: TextFormField(
-                        controller: descriptionController,
-                        decoration: const InputDecoration(
-                          contentPadding: EdgeInsets.all(10),
-                          border: OutlineInputBorder(),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 10),
-                Row(
-                  children: [
-                    Expanded(
-                      child: ElevatedButton(
-                        onPressed: () {
-                          ref.read(itemsProvider.notifier).addItem(Item(
-                              name: nameController.text,
-                              description: descriptionController.text));
-                        },
-                        child: const Text("Add"),
-                      ),
-                    ),
-                    const SizedBox(width: 10),
-                    Expanded(
-                      child: ElevatedButton(
-                        onPressed: () {
-                          ref
-                              .read(itemsProvider.notifier)
-                              .removeItem(nameController.text);
-                        },
-                        child: const Text("Remove"),
-                      ),
-                    ),
-                  ],
-                ),
-              ],
+                );
+              },
+              child: Text("FutureProvider"),
             ),
-          ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => HomeScreenMNotifier(),
+                  ),
+                );
+              },
+              child: Text("NotifierBuilder"),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => HomeScreenAsyncNotifier(),
+                  ),
+                );
+              },
+              child: Text("AsuncNotifier"),
+            )
+          ],
         ),
       ),
     );
