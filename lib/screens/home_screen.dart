@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_poc/models/item_model.dart';
 
@@ -8,13 +7,13 @@ class HomeScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    TextEditingController _nameController = TextEditingController();
-    TextEditingController _descriptionController = TextEditingController();
+    TextEditingController nameController = TextEditingController();
+    TextEditingController descriptionController = TextEditingController();
     List<Item> items = ref.watch(itemsProvider);
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Riverpod POC"),
+        title: const Text("Riverpod POC"),
       ),
       body: SafeArea(
         child: Padding(
@@ -30,7 +29,7 @@ class HomeScreen extends ConsumerWidget {
                         Expanded(
                           child: Row(
                             children: [
-                              Text(
+                              const Text(
                                 "Name: ",
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold, fontSize: 15),
@@ -42,7 +41,7 @@ class HomeScreen extends ConsumerWidget {
                         Expanded(
                           child: Row(
                             children: [
-                              Text(
+                              const Text(
                                 "Description: ",
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold, fontSize: 15),
@@ -61,18 +60,18 @@ class HomeScreen extends ConsumerWidget {
                   children: [
                     Expanded(
                       child: TextFormField(
-                        controller: _nameController,
-                        decoration: InputDecoration(
+                        controller: nameController,
+                        decoration: const InputDecoration(
                           contentPadding: EdgeInsets.all(10),
                           border: OutlineInputBorder(),
                         ),
                       ),
                     ),
-                    SizedBox(width: 5),
+                    const SizedBox(width: 5),
                     Expanded(
                       child: TextFormField(
-                        controller: _descriptionController,
-                        decoration: InputDecoration(
+                        controller: descriptionController,
+                        decoration: const InputDecoration(
                           contentPadding: EdgeInsets.all(10),
                           border: OutlineInputBorder(),
                         ),
@@ -80,28 +79,28 @@ class HomeScreen extends ConsumerWidget {
                     ),
                   ],
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 Row(
                   children: [
                     Expanded(
                       child: ElevatedButton(
                         onPressed: () {
                           ref.read(itemsProvider.notifier).addItem(Item(
-                              name: _nameController.text,
-                              description: _descriptionController.text));
+                              name: nameController.text,
+                              description: descriptionController.text));
                         },
-                        child: Text("Add"),
+                        child: const Text("Add"),
                       ),
                     ),
-                    SizedBox(width: 10),
+                    const SizedBox(width: 10),
                     Expanded(
                       child: ElevatedButton(
                         onPressed: () {
                           ref
                               .read(itemsProvider.notifier)
-                              .removeItem(_nameController.text);
+                              .removeItem(nameController.text);
                         },
-                        child: Text("Remove"),
+                        child: const Text("Remove"),
                       ),
                     ),
                   ],
