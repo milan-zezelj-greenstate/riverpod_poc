@@ -15,7 +15,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Riverpod POC"),
+        title: const Text("Riverpod POC"),
       ),
       body: Center(
         child: Column(
@@ -24,31 +24,31 @@ class _HomeScreenState extends State<HomeScreen> {
               onPressed: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (context) => HomeScreenFuture(),
+                    builder: (context) => const HomeScreenFuture(),
                   ),
                 );
               },
-              child: Text("FutureProvider"),
+              child: const Text("FutureProvider"),
             ),
             ElevatedButton(
               onPressed: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (context) => HomeScreenMNotifier(),
+                    builder: (context) => const HomeScreenMNotifier(),
                   ),
                 );
               },
-              child: Text("NotifierBuilder"),
+              child: const Text("NotifierBuilder"),
             ),
             ElevatedButton(
               onPressed: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (context) => HomeScreenAsyncNotifier(),
+                    builder: (context) => const HomeScreenAsyncNotifier(),
                   ),
                 );
               },
-              child: Text("AsuncNotifier"),
+              child: const Text("AsyncNotifier"),
             )
           ],
         ),

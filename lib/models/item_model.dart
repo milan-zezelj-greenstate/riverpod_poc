@@ -64,8 +64,8 @@ final itemSortTypeProvider = StateProvider<ItemsSortType>(
 Future<List<Item>> getItemFuture(GetItemFutureRef ref) async {
   await Future.delayed(const Duration(seconds: 3));
   return [
-    Item(name: "FutureItemName1", description: "Future item ome"),
-    Item(name: "FutureItemName2", description: "Future item two")
+    const Item(name: "FutureItemName1", description: "Future item ome"),
+    const Item(name: "FutureItemName2", description: "Future item two")
   ];
 }
 
@@ -108,9 +108,9 @@ class ItemsAsync extends _$ItemsAsync {
   Future<List<Item>> _fetchItems(
       {Item item = const Item(
           name: "FutureItemName2", description: "Future item two")}) async {
-    await Future.delayed(Duration(seconds: 3));
+    await Future.delayed(const Duration(seconds: 3));
     var items = [
-      Item(name: "FutureItemName1", description: "Future item ome"),
+      const Item(name: "FutureItemName1", description: "Future item ome"),
     ];
     items.add(item);
     return items;
@@ -125,7 +125,7 @@ class ItemsAsync extends _$ItemsAsync {
     state = const AsyncValue.loading();
 
     state = await AsyncValue.guard(() async {
-      await Future.delayed(Duration(seconds: 1));
+      await Future.delayed(const Duration(seconds: 1));
       return _fetchItems(item: item);
     });
   }

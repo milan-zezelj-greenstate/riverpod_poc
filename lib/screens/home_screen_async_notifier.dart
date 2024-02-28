@@ -13,7 +13,7 @@ class HomeScreenAsyncNotifier extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Riverpod POC"),
+        title: const Text("Riverpod POC Async Notifier"),
       ),
       body: SafeArea(
         child: Padding(
@@ -67,7 +67,7 @@ class HomeScreenAsyncNotifier extends ConsumerWidget {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          CircularProgressIndicator(),
+                          const CircularProgressIndicator(),
                           Expanded(
                             child: Container(),
                           )
@@ -105,16 +105,17 @@ class HomeScreenAsyncNotifier extends ConsumerWidget {
                       child: ElevatedButton(
                         onPressed: () {
                           ref.read(itemsAsyncProvider.notifier).addItem(
-                              Item(name: "Novi item", description: "ASD"));
+                              const Item(
+                                  name: "Novi item", description: "ASD"));
                         },
                         child: const Text("Add"),
                       ),
                     ),
                     const SizedBox(width: 10),
-                    Expanded(
+                    const Expanded(
                       child: ElevatedButton(
                         onPressed: null,
-                        child: const Text("Remove"),
+                        child: Text("Remove"),
                       ),
                     ),
                   ],

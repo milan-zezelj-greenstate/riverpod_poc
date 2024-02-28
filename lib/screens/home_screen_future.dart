@@ -13,7 +13,7 @@ class HomeScreenFuture extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Riverpod POC"),
+        title: const Text("Riverpod POC Future"),
       ),
       body: SafeArea(
         child: Padding(
@@ -67,7 +67,7 @@ class HomeScreenFuture extends ConsumerWidget {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          CircularProgressIndicator(),
+                          const CircularProgressIndicator(),
                           Expanded(
                             child: Container(),
                           )
@@ -99,19 +99,19 @@ class HomeScreenFuture extends ConsumerWidget {
                   ],
                 ),
                 const SizedBox(height: 10),
-                Row(
+                const Row(
                   children: [
                     Expanded(
                       child: ElevatedButton(
                         onPressed: null,
-                        child: const Text("Add"),
+                        child: Text("Add"),
                       ),
                     ),
-                    const SizedBox(width: 10),
+                    SizedBox(width: 10),
                     Expanded(
                       child: ElevatedButton(
                         onPressed: null,
-                        child: const Text("Remove"),
+                        child: Text("Remove"),
                       ),
                     ),
                   ],

@@ -6,7 +6,7 @@ part of 'item_model.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$getItemFutureHash() => r'd109f9cf95a13efd8d3c905044102824ec2c16a5';
+String _$getItemFutureHash() => r'1cc25d57e79b244883a5d7a3d19b24767819d59c';
 
 /// See also [getItemFuture].
 @ProviderFor(getItemFuture)
@@ -35,7 +35,7 @@ final itemsProvider = AutoDisposeNotifierProvider<Items, List<Item>>.internal(
 );
 
 typedef _$Items = AutoDisposeNotifier<List<Item>>;
-String _$itemsAsyncHash() => r'01775ec7db92dcacee2248629c46683091d4ecf3';
+String _$itemsAsyncHash() => r'732e8538cf8485ff529677f11afc5df564567ad7';
 
 /// See also [ItemsAsync].
 @ProviderFor(ItemsAsync)

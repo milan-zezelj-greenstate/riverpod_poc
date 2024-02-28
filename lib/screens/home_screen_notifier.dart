@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:riverpod_poc/models/item_model.dart';
+import 'package:riverpod_poc/models/notifier.dart';
 
 class HomeScreenMNotifier extends ConsumerWidget {
   const HomeScreenMNotifier({super.key});
@@ -9,16 +9,11 @@ class HomeScreenMNotifier extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     TextEditingController nameController = TextEditingController();
     TextEditingController descriptionController = TextEditingController();
-    List<Item> items = ref.watch(itemsProvider);
-    int itemCount = ref.watch(itemCountProvider);
-    ItemsSortType sortType = ref.watch(itemSortTypeProvider);
-
-    ref.listen(itemSortTypeProvider,
-        (previous, next) => ref.read(itemsProvider.notifier).sortItems(next));
+    List<Item> items = ref.watch(getSortedListProvider);
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Riverpod POC"),
+        title: const Text("Riverpod POC Notifier"),
       ),
       body: SafeArea(
         child: Padding(
@@ -26,21 +21,16 @@ class HomeScreenMNotifier extends ConsumerWidget {
           child: Center(
             child: Column(
               children: [
-                Text("Sorted:"),
+                const Text("Sorted:"),
                 ElevatedButton(
                   onPressed: () {
-                    if (sortType == ItemsSortType.normal) {
-                      ref.read(itemSortTypeProvider.notifier).state =
-                          ItemsSortType.reverse;
-                    } else {
-                      ref.read(itemSortTypeProvider.notifier).state =
-                          ItemsSortType.normal;
-                    }
+                    ref.read(listSortTypeProvider.notifier).toggleState();
                   },
-                  child: Text(sortType == ItemsSortType.normal ? "A-Z" : "Z-A"),
+                  child: Text(
+                      ref.watch(listSortTypeProvider) == ItemSortType.normal
+                          ? "A-Z"
+                          : "Z-A"),
                 ),
-                Text("Item count: $itemCount"),
-                Text("Item count changeNotifier: $itemCount"),
                 Expanded(
                   child: ListView.builder(
                     itemCount: items.length,
